@@ -46,6 +46,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findUserById(id);
     }
 
+    public User getByUserName(String userName) {
+        return userRepository.findByUserName(userName);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUserName(username);
@@ -53,27 +57,6 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         }
         return user;
-    }
-
-    @Transactional
-    public void add(Role role) {
-        roleRepository.save(role);
-    }
-
-    public List<Role> getAllRole() {
-        return roleRepository.findAll();
-    }
-
-
-    public Optional<Role> findRoleById(int id) {
-        return roleRepository.findById(id);
-    }
-    public Role findByName(String name) {
-        return roleRepository.findByName(name);
-    }
-
-    public Role getRoleById(int id) {
-        return roleRepository.getRoleById(id);
     }
 
 }
