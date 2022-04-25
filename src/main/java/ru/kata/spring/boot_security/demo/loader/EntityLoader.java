@@ -34,11 +34,11 @@ public class EntityLoader implements InitializingBean {
         roleService.add(userRole);
 
         User[] users=new User[] {
-                new User("Ivan", "Ivanov", "chel"
+                new User("Ivan", "Ivanov", (byte)14,"ivan@mail.com"
 
                         ,passwordEncoder.encode("pro100pass"), Set.of(adminRole)),
 
-                new User("Petr", "Petrov", "standartchel"
+                new User("Petr", "Petrov", (byte) 63,"petr@mail.com"
 
                         ,passwordEncoder.encode("pro100pass"),Set.of(userRole))
         };

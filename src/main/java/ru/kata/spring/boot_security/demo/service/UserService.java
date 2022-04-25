@@ -46,13 +46,13 @@ public class UserService implements UserDetailsService {
         return userRepository.findUserById(id);
     }
 
-    public User getByUserName(String userName) {
-        return userRepository.findByUserName(userName);
+    public User getByUserName(String mail) {
+        return userRepository.findByMail(mail);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUserName(username);
+    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
+        User user = userRepository.findByMail(mail);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }

@@ -48,7 +48,7 @@ public class AdminController {
         return "admin/users";
     }
 
-    @GetMapping("/user-delete/{id}")
+    @DeleteMapping("/user-delete/{id}")
     public String deleteUser(@PathVariable("id") int id) {
         userService.deleteById(id);
         return "redirect:/admin";
@@ -64,7 +64,7 @@ public class AdminController {
     }
 
     @PutMapping("/user-update/{id}")
-    public String updateUserPost(@ModelAttribute("user") User userForm,
+    public String updateUserPost(@ModelAttribute("User") User userForm,
                                  @PathVariable("id") int id,
                                  @RequestParam(name = "role", required = false) String[] roles) {
         Set<Role> rolesSet = new HashSet<>();
@@ -76,7 +76,7 @@ public class AdminController {
             if (userForm.getPassword() != null) {
                 userForm.setPassword(passwordEncoder.encode(userForm.getPassword()));
             } else {
-                userForm.setPassword(userService.getByUserName(userForm.getUserName()).getPassword());
+                userForm.setPassword(userService.getByUserName(userForm.getMail()).getPassword());
             }
             userService.saveUser(userForm);
         }
