@@ -12,18 +12,11 @@ import java.security.Principal;
 
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private RoleService roleService;
-
-    @GetMapping("/users")
-    public String index(Model model, Principal principal) {
-        model.addAttribute("user", userService.getByUserName(principal.getName()));
-        //model.addAttribute("roles", roleService.getAllRole());
-        return "/user/index";
+    @GetMapping()
+    public String index(){
+        return "user/index";
     }
-
 }
